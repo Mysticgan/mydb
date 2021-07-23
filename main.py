@@ -85,28 +85,5 @@ class Table:
 
 if __name__ == '__main__':
     
-    students = Table()
-    students.max_display_length = 15
-    students.add_columns("Id")
-    students.add_columns("Name")
-    students.add_columns("phone number")
+    pass
 
-    students.add_row('11199A259')
-    students.add_row('11199A254')
-
-    students.add_columns("email")
-
-    students.set_value('11199A259',"Id",'11199A259')
-    students.set_value('11199A254',"Id",'11199A254')
-
-    students.set_value('11199A259',"Name",'vignesh')
-    students.set_value('11199A254',"Name",'Ronit')
-
-    students.set_value('11199A259',"phone number",'12345')
-    students.set_value('11199A254',"phone number",'54321')
-
-    students.set_value('11199A259',"email",'vigmail@gmail.com')
-    students.set_value('11199A254',"email",'ronmail@gmail.com')
-
-    students.display_table()
-# print(students.columns,students.rows,students.table,sep="\n")

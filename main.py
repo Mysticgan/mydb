@@ -53,37 +53,36 @@ class Table:
         pass
 
     def display_table(self,width=10):
-        tableData = [[self.table[i][j] for j in self.table[i]] for i in self.table]
+        tabledata=[[self.table[i][j] for j in self.table[i]]for i in self.table]
         output=[]
         for col in self.columns:
             if len(col)<=width:
                 output.append(col.ljust(width))
             else:
-                dispstr = col[:width-3]+"..."
-                output.append(dispstr.ljust(width))
-        heading = "| "+" | ".join(output)+" |"
-        print("_"*(len(heading)+width+1),"| "+" "*(width+1)+heading,"_"*(len(heading)+width+1),sep="\n")
+                output.append(str(col[:width-3]+"...").ljust(width))
         
-        for num,row in enumerate(tableData):
-            output = []
+        decor,heading="",""
+        for i in output:
+            heading += i+"|"
+            decor += "-"*(len(i))+"+"
+        decor = "+"+decor
+        heading="|"+heading
+        print(decor,heading,decor,sep="\n")
+
+        for num,row in enumerate(tabledata):
+            output=[]
             for col in row:
                 if len(col)<=width:
                     output.append(col.ljust(width))
                 else:
-                    dispstr = col[:width-3]+"..."
-                    output.append(dispstr.ljust(width))
-            
-            if len(self.rows[num])<=width:
-                currowid=self.rows[num].ljust(width)
-            else:
-                currowid = str(self.rows[num][:width-3]+"...").ljust(width)
-            rowdisp = "| "+currowid+" | "+" | ".join(output)+" |"
-            print(rowdisp,"_"*(len(rowdisp)),sep=" "*(width)+"\n")
+                    output.append(str(col[:width-3]+"...").ljust(width))
+                
+            disp=""
+            for i in output:
+                disp += i+"|"
+            print("|"+disp)
+        print(decor)
 
-        try:
-            del tableData,output,heading,rowdisp,row,col,currowid
-        except UnboundLocalError:
-            pass
 
     def read_json(self,file_location,silent_confirm=False):
         file_path = pathlib.Path(file_location)
